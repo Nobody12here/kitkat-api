@@ -7,8 +7,8 @@ class UserSerializer(serializers.ModelSerializer):
 		model = User
 		fields = ['id','username','email']
 class KitKatSerializer(serializers.ModelSerializer):
-	sender = UserSerializer()
-	receiver = UserSerializer()
+	sender = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+	receiver = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 	class Meta:
 		model = KitKat
 		fields = ['id','description','amount','sender','receiver','date','seen']
